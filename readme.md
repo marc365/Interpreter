@@ -1,3 +1,7 @@
+Interactive changes
+===========
+for fun I've modified some of the internals and added (amongst other things) Plugins, a CLI, global variables, IO functions and batch processing.
+
 Interpreter
 ===========
 
