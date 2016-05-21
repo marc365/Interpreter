@@ -1,4 +1,10 @@
-﻿/* _________________________________________________
+﻿/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
+/* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
   www.hisystems.com.au - Toby Wicks
@@ -17,26 +23,28 @@
   limitations under the License.
  ___________________________________________________ */
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace HiSystems.Interpreter
 {
-    /// <summary>
-    /// Accepts one argument of type Array containing objects of type Number.
-    /// Usage: AVG(array)
-    /// Example: Avg(Array(1, 2, 3))
-    /// </summary>
     public class Average : Function
     {
         public override string Name
         {
             get
             {
-                return "AVG";
+                return "Avg";
             }
+        }
+
+        public override string Description
+        {
+            get { return "Accepts one argument of type Array containing objects of type Number."; }
+        }
+
+        public override string Usage
+        {
+            get { return "Avg(array) Example: Avg(Array(1, 2, 3))"; }
         }
 
         public override Literal Execute(IConstruct[] arguments)

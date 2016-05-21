@@ -1,4 +1,10 @@
-﻿/* _________________________________________________
+﻿/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
+/* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
   www.hisystems.com.au - Toby Wicks
@@ -17,17 +23,11 @@
   limitations under the License.
  ___________________________________________________ */
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace HiSystems.Interpreter
 {
-    /// <summary>
-    /// Represents an array of constructs. 
-    /// Potentially an array of literals, variables or functions.
-    /// </summary>
     public class Array : Literal, IEnumerable<IConstruct>
     {
         private List<IConstruct> items = new List<IConstruct>();

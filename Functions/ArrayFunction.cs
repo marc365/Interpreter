@@ -1,3 +1,9 @@
+/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
 /* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
@@ -17,18 +23,10 @@
   limitations under the License.
  ___________________________________________________ */
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace HiSystems.Interpreter
 {
-    /// <summary>
-    /// Returns an array from a list of items.
-    /// Usage: Array(item1, item2, ...)
-    /// Example: Array(1, 2, 3)
-    /// </summary>
     public class ArrayFunction : Function
     {
         public override string Name
@@ -37,6 +35,16 @@ namespace HiSystems.Interpreter
             {
                 return "Array";
             }
+        }
+
+        public override string Description
+        {
+            get { return "Returns an array from a list of items."; }
+        }
+
+        public override string Usage
+        {
+            get { return "Array(item1, item2, ...) Example: Array(1, 2, 3)"; }
         }
 
         public override Literal Execute(IConstruct[] arguments)

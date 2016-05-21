@@ -1,3 +1,9 @@
+/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
 /* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
@@ -20,7 +26,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace HiSystems.Interpreter
 {
@@ -43,9 +48,6 @@ namespace HiSystems.Interpreter
         /// </param>
         internal Expression(string expression)
         {
-            if (String.IsNullOrEmpty(expression))
-                throw new ArgumentNullException();
-                
             this.expression = expression;
         }
 
@@ -65,24 +67,20 @@ namespace HiSystems.Interpreter
         {
             Literal result = this.Execute();
 
+            if (result == null)
+                Output.Text(String.Format("Return value from '{0}' is of type 'null', not of type {1}", this.expression, typeof(T).Name));
+
+
             if (!(result is T))
-                throw new InvalidCastException(String.Format("Return value from '{0}' is of type {1}, not of type {2}", this.expression, result.GetType().Name, typeof(T).Name));
+                Output.Text(String.Format("Return value from '{0}' is of type {1}, not of type {2}", this.expression, result.GetType().Name, typeof(T).Name));
 
             return (T)result;
         }
 
         /// <summary>
-        /// Returns a dictionary containing all of the variables that were defined in the expression.
-        /// If a variable is defined in multiple locations only one variable object is available in the dictionary.
-        /// Variables are tokens/identifiers that could not be resolved to an operator or function name.
-        /// Each variable should be assigned a value i.e: Variables["MyVariable"].Literal = (Number)1;
-        /// </summary>
-        public abstract IDictionary<string, Variable> Variables { get; }
-
-        /// <summary>
         /// The original / source expression which this expression represents.
         /// </summary>
-        protected string Source
+        public string Source
         {
             get
             {
@@ -95,7 +93,7 @@ namespace HiSystems.Interpreter
         /// </summary>
         public static implicit operator Expression(string stringLiteral)
         {
-            return new ExpressionParsed("\"" + stringLiteral + "\"", new Text(stringLiteral), new List<Variable>());
+            return new ExpressionParsed("\"" + stringLiteral + "\"", new Text(stringLiteral));
         }
         
         /// <summary>
@@ -103,7 +101,7 @@ namespace HiSystems.Interpreter
         /// </summary>
         public static implicit operator Expression(bool value)
         {
-            return new ExpressionParsed(value.ToString(), new Boolean(value), new List<Variable>());
+            return new ExpressionParsed(value.ToString(), new Boolean(value));
         }
 
         /// Returns a distinct list of variables from the expression.

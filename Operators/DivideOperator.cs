@@ -1,3 +1,9 @@
+/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
 /* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
@@ -17,11 +23,6 @@
   limitations under the License.
  ___________________________________________________ */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace HiSystems.Interpreter
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace HiSystems.Interpreter
             var argument2Value = base.GetTransformedConstruct<Number>(argument2);
 
             if (argument2Value == 0)
-                throw new DivideByZeroException(argument2.ToString());
+                return new Error("Divide by zero");
 
             return base.GetTransformedConstruct<Number>(argument1) / argument2Value;
         }

@@ -1,3 +1,9 @@
+/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
 /* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
@@ -17,9 +23,6 @@
   limitations under the License.
  ___________________________________________________ */
 
-using System;
-using System.Collections.Generic;
-
 namespace HiSystems.Interpreter
 {
     /// <summary>
@@ -32,19 +35,10 @@ namespace HiSystems.Interpreter
         /// </summary>
         private IConstruct construct;
         
-        /// <summary>
-        /// All of the variables defined in the expression.
-        /// </summary>
-        private IDictionary<string, Variable> variables;
-
-        internal ExpressionParsed(string expression, IConstruct value, List<Variable> variables)
+        internal ExpressionParsed(string expression, IConstruct value)
             : base(expression)
         {
-            if (value == null)
-                throw new ArgumentNullException();
-            
             this.construct = value;
-            this.variables = TranslateVariablesToDictionary(variables);
         }
 
         /// <summary>
@@ -54,22 +48,10 @@ namespace HiSystems.Interpreter
         /// </summary>
         public override Literal Execute()
         {
-            return construct.Transform();
-        }
+            if (construct != null)
+                return construct.Transform();
 
-        /// <summary>
-        /// Returns a dictionary containing all of the variables that were defined in the expression.
-        /// If a variable is defined in multiple locations only one variable object is available in the dictionary.
-        /// Variables are tokens/identifiers that could not be resolved to an operator or function name.
-        /// Each variable should be assigned a value i.e: Variables["MyVariable"].Literal = (Number)1;
-        /// </summary>
-        public override IDictionary<string, Variable> Variables
-        {
-            get 
-            {
-                return this.variables;
-            }
+            return null;
         }
     }
 }
-

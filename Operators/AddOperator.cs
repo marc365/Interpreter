@@ -1,4 +1,10 @@
-﻿/* _________________________________________________
+﻿/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
+/* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
   www.hisystems.com.au - Toby Wicks
@@ -18,9 +24,6 @@
  ___________________________________________________ */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace HiSystems.Interpreter
 {
@@ -50,10 +53,18 @@ namespace HiSystems.Interpreter
                 return ((Number)argument1Transformed) + ((Number)argument2Transformed);
             else if (argument1Transformed is DateTime && argument2Transformed is Number)
                 return ((DateTime)argument1Transformed) + ((Number)argument2Transformed);
+            else if (argument1Transformed is DateTime && argument2Transformed is Text)
+                return ((DateTime)argument1Transformed).ToString() + ((Text)argument2Transformed);
+            else if (argument1Transformed is Text && argument2Transformed is DateTime)
+                return ((Text)argument1Transformed) + ((DateTime)argument2Transformed).ToString();
             else if (argument1Transformed is Text && argument2Transformed is Text)
                 return ((Text)argument1Transformed) + ((Text)argument2Transformed);
+            else if (argument1Transformed is Text && argument2Transformed is Number)
+                return ((Text)argument1Transformed) + ((Number)argument2Transformed).ToString();
+            else if (argument1Transformed is Number && argument2Transformed is Text)
+                return ((Number)argument1Transformed).ToString() + ((Text)argument2Transformed);
             else
-                throw new InvalidOperationException(String.Format("Add operator requires arguments of type Number, DateTime or Text. Argument types are {0} {1}.", argument1Transformed.GetType().Name, argument2Transformed.GetType().Name));
+                return new Error(String.Format("Add operator requires arguments of type Number, DateTime or Text. Argument types are {0} {1}.", argument1Transformed.GetType().Name, argument2Transformed.GetType().Name));
         }
 
         public override string Token

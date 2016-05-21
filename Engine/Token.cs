@@ -1,4 +1,11 @@
-﻿/* _________________________________________________
+﻿
+/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
+/* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
   www.hisystems.com.au - Toby Wicks
@@ -18,9 +25,6 @@
  ___________________________________________________ */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace HiSystems.Interpreter
 {
@@ -78,8 +82,8 @@ namespace HiSystems.Interpreter
     /// </summary>
     internal class Token
     {
-        private string value;
-        private TokenType type;
+        public string value;
+        public TokenType type;
 
         public Token(string token, TokenType type)
         {

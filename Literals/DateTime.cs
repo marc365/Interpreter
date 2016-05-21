@@ -1,3 +1,9 @@
+/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
 /* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
@@ -17,18 +23,12 @@
   limitations under the License.
  ___________________________________________________ */
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using HiSystems.Interpreter.Converters;
+using System;
+using System.ComponentModel;
 
 namespace HiSystems.Interpreter
 {
-    /// <summary>
-    /// Represents an immutable date / time value.
-    /// </summary>
     [TypeConverter(typeof(DateTimeTypeConverter))]
     public class DateTime : Literal
     {

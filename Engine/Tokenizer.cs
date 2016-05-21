@@ -1,3 +1,9 @@
+/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
 /* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
@@ -20,7 +26,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace HiSystems.Interpreter
 {
@@ -37,14 +42,16 @@ namespace HiSystems.Interpreter
             const char RightParenthesis = ')';
             const char Comma = ',';
             const char NumericNegative = '-';
+            const char NumericDecimal = '.';
             const char DateTimeDelimiter = '#';
 
             var whitespaceCharacters = new[] { ' ', '\t' };
-            var numericCharacters = new[] { '.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-            var identifierCharacters = new[] { '_', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
-            var identifierSecondaryCharacters = new[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };     // other characters that can be used as identifiers - but cannot be a starting character
-            var textDelimiters = new[] { '\"', '\'' };
+            var numericCharacters = new[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            var identifierCharacters = new[] { '_', '*', '-', '?', '@', '!', '\'', '.', ':', ';', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+            var identifierSecondaryCharacters = new[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', ':' }; // other characters that can be used as identifiers - but cannot be a starting character
+            var textDelimiters = new[] { '\"' };
             bool isNumericNegative = false;
+            bool isNumericDecimal = false;
             bool parsingText = false;
             bool parsingDateTime = false;
 
@@ -64,6 +71,7 @@ namespace HiSystems.Interpreter
                 // if the character is a '-' and the subsequent character is a numeric character then this is a negative number. 
                 // otherwise it is some other character TokenType.Other -- probably a subtraction operator.
                 isNumericNegative = character == NumericNegative && expressionEnumerator.CanPeek && numericCharacters.Contains(expressionEnumerator.Peek);
+                isNumericDecimal = character == NumericDecimal && expressionEnumerator.CanPeek && numericCharacters.Contains(expressionEnumerator.Peek);
 
                 if (textDelimiters.Contains(character) || parsingText)
                 {
@@ -108,7 +116,7 @@ namespace HiSystems.Interpreter
                     characterTokenType = TokenType.Identifier;
                     characterString = character.ToString();
                 }
-                else if (numericCharacters.Contains(character) || isNumericNegative)
+                else if (numericCharacters.Contains(character) || isNumericNegative || isNumericDecimal)
                 {
                     characterTokenType = TokenType.Number;
                     characterString = character.ToString();

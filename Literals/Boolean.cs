@@ -1,3 +1,9 @@
+/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
 /* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
@@ -17,17 +23,11 @@
   limitations under the License.
  ___________________________________________________ */
 
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using HiSystems.Interpreter.Converters;
+using System.ComponentModel;
 
 namespace HiSystems.Interpreter
 {
-    /// <summary>
-    /// Represents an immutable boolean value.
-    /// </summary>
     [TypeConverter(typeof(BooleanTypeConverter))]
     public class Boolean : Literal
     {
@@ -45,6 +45,9 @@ namespace HiSystems.Interpreter
         
         public static implicit operator bool(Boolean boolean)
         {
+            ////warning
+            //Print.Text("what");
+            //if (boolean = null) return true;
             return boolean.value;
         }
         

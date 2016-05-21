@@ -1,3 +1,9 @@
+/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
 /* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
@@ -17,11 +23,7 @@
   limitations under the License.
  ___________________________________________________ */
 
-
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace HiSystems.Interpreter
 {
@@ -58,6 +60,11 @@ namespace HiSystems.Interpreter
 
         Literal IConstruct.Transform ()
         {
+            if (this.@operator == null)
+            {
+                this.@operator = new AddOperator();
+            }
+
             return this.@operator.Execute(this.leftValue, this.rightValue);
         }
 
@@ -150,30 +157,27 @@ namespace HiSystems.Interpreter
         
         public override string ToString()
         {
-            return this.leftValue.ToString() + " " + this.@operator.Token + " " + this.rightValue.ToString();
-        }
+            try
+            {
+                if (@operator == null)
+                {
+                    return this.leftValue.ToString() + " " + this.rightValue.ToString();
+                }
+            }
+            catch(Exception exc)
+            {
+                return exc.Message;
+            }
 
-//      /// <summary>
-//      /// Returns all of the items in the expression tree (including this root node).
-//      /// </summary>
-//        public IConstruct[] GetAllItems()
-//        {
-//            var items = new List<IConstruct>();
-//
-//            GetAllItems(items, this);
-//
-//            return items.ToArray();
-//        }
-//
-//        private void GetAllItems(List<IConstruct> items, IConstruct value)
-//        {
-//            items.Add(value);
-//
-//            if (value is Operation)
-//            {
-//                GetAllItems(items, ((Operation)value).LeftValue);
-//                GetAllItems(items, ((Operation)value).RightValue);
-//            }
-//        }
+            try
+            {
+                return this.leftValue.ToString() + " " + this.@operator.Token + " " + this.rightValue.ToString();
+            }
+            catch (Exception exc)
+            {
+                return exc.Message;
+            }
+
+        }
     }
 }

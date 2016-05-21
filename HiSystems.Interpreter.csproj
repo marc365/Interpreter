@@ -6,12 +6,13 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{65D25F1E-BD7D-4B5E-8457-DD8A4813DD30}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HiSystems.Interpreter</RootNamespace>
     <AssemblyName>HiSystems.Interpreter</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +31,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -39,41 +45,84 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\Action.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\Compile.cs" />
+    <Compile Include="Commands\Compress.cs" />
+    <Compile Include="Commands\Copy.cs" />
+    <Compile Include="Commands\Decompress.cs" />
+    <Compile Include="Commands\Del.cs" />
+    <Compile Include="Commands\Dir.cs" />
+    <Compile Include="Commands\Edit.cs" />
+    <Compile Include="Commands\Execute.cs" />
+    <Compile Include="Commands\Exit.cs" />
+    <Compile Include="Commands\Help.cs" />
+    <Compile Include="Commands\Kill.cs" />
+    <Compile Include="Commands\NewCli.cs" />
+    <Compile Include="Commands\Rename.cs" />
+    <Compile Include="Commands\Threads.cs" />
+    <Compile Include="Commands\Time.cs" />
+    <Compile Include="Commands\Variables.cs" />
+    <Compile Include="Constructs\CommandOperation.cs" />
     <Compile Include="Constructs\FunctionOperation.cs" />
     <Compile Include="Constructs\IConstruct.cs" />
     <Compile Include="Constructs\Operation.cs" />
     <Compile Include="Constructs\Variable.cs" />
     <Compile Include="Converters\BooleanTypeConverter.cs" />
+    <Compile Include="Converters\ByteArrayTypeConverter.cs" />
     <Compile Include="Converters\DateTimeTypeConverter.cs" />
+    <Compile Include="Converters\ErrorTypeConverter.cs" />
     <Compile Include="Converters\NumberTypeConverter.cs" />
     <Compile Include="Converters\TextTypeConverter.cs" />
     <Compile Include="Engine\Engine.cs" />
     <Compile Include="Engine\Expression.cs" />
     <Compile Include="Engine\ExpressionParsed.cs" />
-    <Compile Include="Engine\ExpressionParseOnDemand.cs" />
     <Compile Include="Engine\Token.cs" />
     <Compile Include="Engine\Tokenizer.cs" />
+    <Compile Include="Functions\Alias.cs" />
     <Compile Include="Functions\ArrayFunction.cs" />
     <Compile Include="Functions\Average.cs" />
+    <Compile Include="Functions\Dec.cs" />
+    <Compile Include="Functions\Deflate.cs" />
+    <Compile Include="Functions\Fasthash.cs" />
     <Compile Include="Functions\Format.cs" />
     <Compile Include="Functions\Function.cs" />
+    <Compile Include="Functions\Guid.cs" />
+    <Compile Include="Functions\Gzip.cs" />
     <Compile Include="Functions\If.cs" />
+    <Compile Include="Functions\Inc.cs" />
+    <Compile Include="Functions\Key.cs" />
     <Compile Include="Functions\Len.cs" />
+    <Compile Include="Functions\Log.cs" />
     <Compile Include="Functions\Max.cs" />
     <Compile Include="Functions\Min.cs" />
+    <Compile Include="Functions\Now.cs" />
+    <Compile Include="Functions\Output.cs" />
+    <Compile Include="Functions\Parse.cs" />
+    <Compile Include="Functions\Path.cs" />
+    <Compile Include="Functions\Random.cs" />
+    <Compile Include="Functions\Read.cs" />
+    <Compile Include="Functions\Salt.cs" />
+    <Compile Include="Functions\Shuffle.cs" />
+    <Compile Include="Functions\Sleep.cs" />
     <Compile Include="Functions\Sum.cs" />
     <Compile Include="Functions\Today.cs" />
+    <Compile Include="Functions\While.cs" />
+    <Compile Include="Functions\Write.cs" />
     <Compile Include="Library\PeekableEnumerator.cs" />
     <Compile Include="Literals\Array.cs" />
     <Compile Include="Literals\Boolean.cs" />
+    <Compile Include="Literals\ByteArray.cs" />
     <Compile Include="Literals\DateTime.cs" />
+    <Compile Include="Literals\Error.cs" />
     <Compile Include="Literals\Literal.cs" />
     <Compile Include="Literals\Number.cs" />
     <Compile Include="Literals\Text.cs" />
     <Compile Include="Operators\AddOperator.cs" />
     <Compile Include="Operators\AndOperator.cs" />
     <Compile Include="Operators\DivideOperator.cs" />
+    <Compile Include="Operators\EqualsOperator.cs" />
     <Compile Include="Operators\EqualToOperator.cs" />
     <Compile Include="Operators\GreaterThanOperator.cs" />
     <Compile Include="Operators\GreaterThanOrEqualToOperator.cs" />
@@ -85,6 +134,9 @@
     <Compile Include="Operators\Operator.cs" />
     <Compile Include="Operators\OrOperator.cs" />
     <Compile Include="Operators\SubtractOperator.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Repo.cs" />
+    <Compile Include="Spinner.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

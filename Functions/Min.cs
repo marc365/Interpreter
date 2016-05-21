@@ -1,3 +1,9 @@
+/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
 /* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
@@ -17,18 +23,10 @@
   limitations under the License.
  ___________________________________________________ */
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace HiSystems.Interpreter
 {
-    /// <summary>
-    /// Returns the minimum numeric value from an array.
-    /// Usage: Min(array)
-    /// Example: Min(Array(1, 2, 3))
-    /// </summary>
     public class Min : Function
     {
         public override string Name
@@ -37,6 +35,16 @@ namespace HiSystems.Interpreter
             {
                 return "Min";
             }
+        }
+
+        public override string Description
+        {
+            get { return "Returns the minimum numeric value from an array."; }
+        }
+
+        public override string Usage
+        {
+            get { return "Min(array) Example: Min(Array(1, 2, 3)"; }
         }
 
         public override Literal Execute(IConstruct[] arguments)

@@ -1,3 +1,9 @@
+/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
 /* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
@@ -17,16 +23,12 @@
   limitations under the License.
  ___________________________________________________ */
 
+using HiSystems.Interpreter.Converters;
 using System;
 using System.ComponentModel;
-using System.Text;
-using HiSystems.Interpreter.Converters;
 
 namespace HiSystems.Interpreter
 {
-    /// <summary>
-    /// Represents an immutable numeric value.
-    /// </summary>
     [TypeConverter(typeof(NumberTypeConverter))]
     public class Number : Literal
     {
@@ -72,9 +74,17 @@ namespace HiSystems.Interpreter
             return new Number((decimal)value);
         }
 
-        public static Number Parse(string value)
+        public static Literal Parse(string value)
         {
-            return new Number(Decimal.Parse(value));
+            try
+            {
+                //otod int.parse with speedup if a '.' to create 2 values then inject int decimal.
+                return new Number(Decimal.Parse(value));
+            }
+            catch(Exception exc)
+            {
+                return new Error(exc.Message);
+            }
         }
 
         public static Boolean operator==(Number value1, Number value2)
@@ -124,7 +134,17 @@ namespace HiSystems.Interpreter
         
         public static Number operator*(Number value1, Number value2)
         {
-            return new Number(value1.value * value2.value);
+            if (value1 == null || value2 == null)
+                return new Number(0);
+
+            try
+            {
+                return new Number(value1.value * value2.value);
+            }
+            catch
+            {
+                return new Number(0);
+            }
         }
 
         public static Number operator%(Number value1, Number value2)

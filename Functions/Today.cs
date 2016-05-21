@@ -1,3 +1,9 @@
+/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
 /* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
@@ -17,25 +23,26 @@
   limitations under the License.
  ___________________________________________________ */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace HiSystems.Interpreter
 {
-    /// <summary>
-    /// Returns today's date.
-    /// Usage: Today()
-    /// </summary>
     public class Today : Function
     {
         public override string Name
         {
             get
             {
-                return "TODAY";
+                return "Today";
             }
+        }
+
+        public override string Description
+        {
+            get { return "Returns today's date."; }
+        }
+
+        public override string Usage
+        {
+            get { return "Today()"; }
         }
 
         public override Literal Execute(IConstruct[] arguments)

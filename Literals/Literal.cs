@@ -1,3 +1,9 @@
+/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
 /* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
@@ -17,8 +23,6 @@
   limitations under the License.
  ___________________________________________________ */
 
-using System;
-
 namespace HiSystems.Interpreter
 {
     /// <summary>
@@ -36,4 +40,3 @@ namespace HiSystems.Interpreter
         }
     }
 }
-

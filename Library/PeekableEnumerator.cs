@@ -1,4 +1,10 @@
-﻿/* _________________________________________________
+﻿/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
+/* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
   www.hisystems.com.au - Toby Wicks
@@ -19,8 +25,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace HiSystems.Interpreter
 {

@@ -1,3 +1,9 @@
+/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
 /* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
@@ -18,9 +24,6 @@
  ___________________________________________________ */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace HiSystems.Interpreter
 {
@@ -49,7 +52,7 @@ namespace HiSystems.Interpreter
             else if (argument1Transformed is DateTime && argument2Transformed is DateTime)
                 return ((DateTime)argument1Transformed) > ((DateTime)argument2Transformed);
             else
-                throw new InvalidOperationException(String.Format("Greater than operator requires arguments of type Number or DateTime. Argument types are {0} {1}.", argument1Transformed.GetType().Name, argument2Transformed.GetType().Name));
+                return (new Error(String.Format("Greater than operator requires arguments of type Number or DateTime. Argument types are {0} {1}.", argument1Transformed.GetType().Name, argument2Transformed.GetType().Name)));
         }
 
         public override string Token

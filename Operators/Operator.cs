@@ -1,4 +1,10 @@
-﻿/* _________________________________________________
+﻿/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
+/* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
   www.hisystems.com.au - Toby Wicks
@@ -16,11 +22,6 @@
   See the License for the specific language governing permissions and
   limitations under the License.
  ___________________________________________________ */
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace HiSystems.Interpreter
 {
@@ -53,15 +54,17 @@ namespace HiSystems.Interpreter
             return CastConstructToType<T>(transformedConstruct);
         }
 
-        /// <summary>
-        /// Throws an exception if the argument passed is not the expected type.
-        /// </summary>
         private T CastConstructToType<T>(IConstruct construct)
         {
             if (!(construct is T))
-                throw new InvalidOperationException(String.Format("{0} construct is not of type {1} and cannot be used with the {2} operator", construct.ToString(), typeof(T).Name, this.Token));
+                return default(T);
 
             return (T)construct;
+        }
+
+        protected Text Empty()
+        {
+            return new Text(string.Empty);
         }
     }
 }

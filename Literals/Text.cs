@@ -1,3 +1,9 @@
+/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
 /* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
@@ -17,9 +23,10 @@
   limitations under the License.
  ___________________________________________________ */
 
+using HiSystems.Interpreter.Converters;
 using System;
 using System.ComponentModel;
-using HiSystems.Interpreter.Converters;
+using System.Text;
 
 namespace HiSystems.Interpreter
 {
@@ -92,8 +99,19 @@ namespace HiSystems.Interpreter
         
         public override string ToString()
         {
-            return value.ToString();
+            return value;
+        }
+
+        public static string Reverse(string value)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = value.Length -1; i >= 0; i--)
+            {
+                sb.Append(value[i]);
+            }
+
+            return sb.ToString();
         }
     }
 }
-

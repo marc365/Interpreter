@@ -1,3 +1,9 @@
+/*
+ *
+ * User: github.com/marc365
+ * Updated: 2016
+ */
+
 /* _________________________________________________
 
   (c) Hi-Integrity Systems 2012. All rights reserved.
@@ -17,26 +23,28 @@
   limitations under the License.
  ___________________________________________________ */
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace HiSystems.Interpreter
 {
-    /// <summary>
-    /// Returns the sum total of the numeric values from an array.
-    /// Usage: Sum(array)
-    /// Example: Sum(Array(1, 2, 3))
-    /// </summary>
     public class Sum : Function
     {
         public override string Name
         {
             get
             {
-                return "SUM";
+                return "Sum";
             }
+        }
+
+        public override string Description
+        {
+            get { return "Returns the sum total of the numeric values from an array."; }
+        }
+
+        public override string Usage
+        {
+            get { return "Sum(array) Example: Sum(Array(1, 2, 3))"; }
         }
 
         public override Literal Execute(IConstruct[] arguments)
