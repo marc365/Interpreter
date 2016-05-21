@@ -34,12 +34,11 @@ namespace HiSystems.Interpreter
             if (Program._Mono)
             {
                 ChannelInfo.FileName = "mono";
-                ChannelInfo.Arguments = "HiSystems.Interpreter.exe " + Salt.Word(6);
+                ChannelInfo.Arguments = "HiSystems.Interpreter.exe ";
             }
             else
             {
-                ChannelInfo.FileName = "program";
-                ChannelInfo.Arguments = Salt.Word(6);
+                ChannelInfo.FileName = "HiSystems.Interpreter";
             }
 
             ChannelInfo.UseShellExecute = true;
