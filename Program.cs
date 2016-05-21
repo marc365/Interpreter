@@ -121,7 +121,7 @@ namespace HiSystems.Interpreter
             Parse.Execute("alias(\"_Input\", Log(KeyboardInput()))"); //KeyboardInput() is in the Console plugin so we're making the assumption...
             Parse.Execute("alias(\"_Parse\", Parse())"); //Parse() with no argument triggers Parse(_Input)
             Parse.Execute("Output(Notice(\"ready\"))");
-            Parse.Execute("While(true, Parse())");
+            Parse.Execute("While(true, _Parse)"); //_Parse can be modified during runtime
             
             #endregion
 
